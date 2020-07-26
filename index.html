@@ -71,7 +71,7 @@
                   </div>
                </div>
                <div class="col-md-12 pt-4 pb-4">
-                  <button type="button" class="btn btn-success check-out">Check Out</button>
+                  <button id="checkOut" type="button" class="btn btn-success check-out">Check Out</button>
                </div>
             </div>
          </div>
@@ -307,6 +307,64 @@ secondPlusBtn.addEventListener('click', function(){
   var tax =parseFloat(document.getElementById('tax').innerText);
 
   document.getElementById('total').innerText = subTotal + tax ;
+
+  /* Exit First Btn click change  */
+   var removeBtnOne = document.getElementById('removeBtnOne');
+      removeBtnOne.addEventListener('click', function(){
+         var cartItemOne = document.getElementById('cartItemOne');
+         cartItemOne.style.display = 'none';
+
+         var firstPriceValue = parseFloat(document.getElementById('firstPriceValue').innerText);
+         var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+            subTotal = subTotal - firstPriceValue;
+         document.getElementById('subTotal').innerText = subTotal ;
+
+    /* SubTotal tax value calculate */
+         var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+         var  tax = (subTotal /100) * 5;
+           document.getElementById('tax').innerText = tax;
+
+
+      /* Total Price value calculate */
+
+             var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+            var tax =parseFloat(document.getElementById('tax').innerText);
+            document.getElementById('total').innerText = subTotal + tax ;
+      })
+
+      
+  /* Exit Second Btn click change  */
+   var removeBtnTwo = document.getElementById('removeBtnTwo');
+   removeBtnTwo.addEventListener('click', function(){
+         var cartItemTwo = document.getElementById('cartItemTwo');
+         cartItemTwo.style.display = 'none';
+
+         var secondPriceValue = parseFloat(document.getElementById('secondPriceValue').innerText);
+         var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+            subTotal = subTotal - secondPriceValue;
+         document.getElementById('subTotal').innerText = subTotal ;
+
+    /* SubTotal tax value calculate */
+         var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+         var  tax = (subTotal /100) * 5;
+           document.getElementById('tax').innerText = tax;
+
+
+      /* Total Price value calculate */
+
+             var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+            var tax =parseFloat(document.getElementById('tax').innerText);
+            document.getElementById('total').innerText = subTotal + tax ;
+      })
+
+
+      /* Check Out click function */
+      var checkOut = document.getElementById('checkOut');
+      checkOut.addEventListener('click', function(){
+         var cart = document.querySelector('.cart');
+         cart.style.display = 'none';
+         alert("Thanks For Your Order");
+      })
    
    </script>
    
