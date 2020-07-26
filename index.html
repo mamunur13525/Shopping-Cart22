@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item" id="cartItemOne">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="minuseBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="firstInputValue" type="text" class="form-control text-center" value="1">
+                           <button id="plusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$ <span id="firstPriceValue">1219</span></h5>
+                        <img id="removeBtnOne" src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item" id="cartItemTwo">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="secondMinuseBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                         <input id="secondInputValue" type="text" class="form-control text-center" value="1">
+                           <button id="secondPlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="secondPriceValue">59</span> </h5>
+                        <img id="removeBtnTwo" src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>SubsubTotal: </h5>
+                        <h5>Tax:(5%)</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="subTotal">1278</span></h5>
+                        <h5>$ <span id="tax">0</span></h5>
+                        <h5>$ <span id="total">1,278</span>  </h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   
+   <script>
+      // firstInputValue
+var firstInputValue = document.getElementById('firstInputValue');
+firstInputValue.addEventListener('input', updateValue);
+
+function updateValue(tar) {
+   document.getElementById('firstPriceValue').innerText = tar.target.value * 1219;
+
+/* subTotal value input change */
+   var secondPriceValue = parseFloat(document.getElementById('secondPriceValue').innerText);
+       document.getElementById('subTotal').innerText = tar.target.value * 1219 + secondPriceValue;
+       
+   /* SubTotal tax value calculate */
+   var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+         var  tax = (subTotal /100) * 5;
+            document.getElementById('tax').innerText = tax;
+
+
+ /* Total Price value calculate */
+
+  var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+  var tax =parseFloat(document.getElementById('tax').innerText);
+
+  document.getElementById('total').innerText = subTotal + tax ;
+}
+
+
+// secondInputValue
+
+
+var secondInputValue = document.getElementById('secondInputValue');
+  
+secondInputValue.addEventListener('input', function(){
+   var secondInputValue = document.getElementById('secondInputValue').value;
+    var secondInputValue = parseFloat(secondInputValue);
+    document.getElementById('secondPriceValue').innerText = secondInputValue * 59;
+ 
+
+   /* subTotal value minuse */
+   var firstPriceValue = parseFloat( document.getElementById('firstPriceValue').innerText );
+            document.getElementById('subTotal').innerText =  secondInputValue * 59 + firstPriceValue ;
+
+               /* SubTotal tax value calculate */
+   var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+         var  tax = (subTotal /100) * 5;
+            document.getElementById('tax').innerText = tax;
+
+            /* Total Price value calculate */
+
+  var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+  var tax =parseFloat(document.getElementById('tax').innerText);
+
+  document.getElementById('total').innerText = subTotal + tax ;
+
+
+})
+
+
+
+
+      // First Item
+      var plusBtn = document.getElementById('plusBtn');
+        plusBtn.addEventListener('click', function(){
+      /* increase item value */
+          var firstInputValue = document.getElementById('firstInputValue').value;
+            firstInputValue = parseFloat(firstInputValue);
+            firstInputValue = firstInputValue + 1;
+            document.getElementById('firstInputValue').value = firstInputValue;
+     /* increase price value */
+      var firstPriceValue = document.getElementById('firstPriceValue').innerText;
+         firstPriceValue = parseFloat(firstPriceValue);
+         firstPriceValue = firstInputValue * 1219 ;
+         document.getElementById('firstPriceValue').innerText = firstPriceValue;
+   /* subTotal value plus */
+         var secondPriceValue = parseFloat(document.getElementById('secondPriceValue').innerText);
+         document.getElementById('subTotal').innerText = firstPriceValue + secondPriceValue;
+
+
+   /* SubTotal tax value calculate */
+         var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+               var  tax = (subTotal /100) * 5;
+                  document.getElementById('tax').innerText = tax;
+
+  /* Total Price value calculate */
+
+         var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+         var tax =parseFloat(document.getElementById('tax').innerText);
+
+         document.getElementById('total').innerText = subTotal + tax ;
+       
+
+        })
+
+
+    /* minuse btn click */
+   var minuseBtn = document.getElementById('minuseBtn');
+        minuseBtn.addEventListener('click', function(){
+
+     if( parseFloat(document.getElementById('firstInputValue').value) == 0){
+      document.getElementById('firstInputValue').value = 0;
+     }else{
+   
+    /* Deincrease item value */
+            var firstInputValue = document.getElementById('firstInputValue').value;
+            firstInputValue = parseFloat(firstInputValue);
+            firstInputValue = firstInputValue - 1;
+            document.getElementById('firstInputValue').value = firstInputValue;
+
+    /* Deincrease price value */
+      var firstPriceValue = document.getElementById('firstPriceValue').innerText;
+         firstPriceValue = parseFloat(firstPriceValue);
+         firstPriceValue = firstPriceValue - 1219 ;
+         document.getElementById('firstPriceValue').innerText = firstPriceValue;
+
+
+      /* subTotal value minuse */
+         var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+            document.getElementById('subTotal').innerText = subTotal - 1219;
+
+
+  /* SubTotal tax value calculate */
+   var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+         var  tax = (subTotal /100) * 5;
+            document.getElementById('tax').innerText = tax;
+
+
+  /* Total Price value calculate */
+
+            var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+            var tax =parseFloat(document.getElementById('tax').innerText);
+
+            document.getElementById('total').innerText = subTotal + tax ;
+        
+     }
+
+   })
+
+    
+      
+
+
+/* Second Item */
+var secondPlusBtn = document.getElementById('secondPlusBtn');
+secondPlusBtn.addEventListener('click', function(){
+      /* increase item value */
+          var secondInputValue = document.getElementById('secondInputValue').value;
+          secondInputValue = parseFloat(secondInputValue);
+          secondInputValue = secondInputValue + 1;
+            document.getElementById('secondInputValue').value = secondInputValue;
+     /* increase price value */
+      var secondPriceValue = document.getElementById('secondPriceValue').innerText;
+         secondPriceValue = parseFloat(secondPriceValue);
+         secondPriceValue = secondInputValue * 59 ;
+         document.getElementById('secondPriceValue').innerText = secondPriceValue;
+
+       //  var firstPriceValue = parseFloat(document.getElementById('firstPriceValue').innerText);
+         var subTotal = parseFloat( document.getElementById('subTotal').innerText );
+            document.getElementById('subTotal').innerText =  subTotal + 59;
+
+ /* SubTotal tax value calculate */
+         var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+               var  tax = (subTotal /100) * 5;
+                  document.getElementById('tax').innerText = tax;
+
+
+   /* Total Price value calculate */
+
+            var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+            var tax =parseFloat(document.getElementById('tax').innerText);
+
+            document.getElementById('total').innerText = subTotal + tax ;
+
+         
+        })
+    /* minuse btn click */
+   var secondMinuseBtn = document.getElementById('secondMinuseBtn');
+      secondMinuseBtn.addEventListener('click', function(){
+           
+     if( parseFloat(document.getElementById('secondInputValue').value) == 0){
+        document.getElementById('secondInputValue').value = 0;
+     }else{
+   
+    /* Deincrease item value */
+            var secondInputValue = document.getElementById('secondInputValue').value;
+            secondInputValue = parseFloat(secondInputValue);
+            secondInputValue = secondInputValue - 1;
+            document.getElementById('secondInputValue').value = secondInputValue;
+
+    /* Deincrease price value */
+      var secondPriceValue = document.getElementById('secondPriceValue').innerText;
+      secondPriceValue = parseFloat(secondPriceValue);
+      secondPriceValue = secondPriceValue - 59 ;
+         document.getElementById('secondPriceValue').innerText = secondPriceValue;
+
+
+/* subTotal value minuse */
+         var subTotal = parseFloat( document.getElementById('subTotal').innerText );
+            document.getElementById('subTotal').innerText =  subTotal - 59;
+
+  /* SubTotal tax value calculate */
+   var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+         var  tax = (subTotal /100) * 5;
+            document.getElementById('tax').innerText = tax;
+
+
+    /* Total Price value calculate */
+
+            var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+            var tax =parseFloat(document.getElementById('tax').innerText);
+
+            document.getElementById('total').innerText = subTotal + tax ;
+        
+     }
+   })
+
+    
+/* SubTotal tax value calculate */
+   var subTotal = parseFloat(document.getElementById('subTotal').innerText);
+       var  tax = (subTotal /100) * 5;
+         document.getElementById('tax').innerText = tax;
+
+
+
+/* Total Price value calculate */
+
+  var subTotal =parseFloat(document.getElementById('subTotal').innerText);
+  var tax =parseFloat(document.getElementById('tax').innerText);
+
+  document.getElementById('total').innerText = subTotal + tax ;
+   
+   </script>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+</body>
+
+</html>
